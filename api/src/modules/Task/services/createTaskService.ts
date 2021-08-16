@@ -1,11 +1,11 @@
 import IProjectRepository from '@modules/Project/repositories/IProjectRepository';
 import AppError from '@shared/error/AppError';
 import { inject, injectable } from 'tsyringe';
-import ICreateTaskDTO from '../dtos/ICreateTaskDTO';
 import Task from '../infra/typeorm/entities/task';
-import ITaskRepository from '../repositories/ITaskRepositories';
+import ITaskRepository from '../repositories/ITasksRepository';
 import { isBefore } from 'date-fns';
 import TasksStatus from '../enum/statusTask';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 interface IRequest {
   name: string;
@@ -22,6 +22,9 @@ class CreateTaskService {
 
     @inject('ProjectRepositories')
     private projectRepositories: IProjectRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   async execute({ name, date, user_id, project_id }: IRequest): Promise<Task> {
@@ -41,11 +44,11 @@ class CreateTaskService {
       throw new AppError('Project does not exists', 400);
     }
 
-    // const dateFormatted = new Date(date);
+    const dateFormatted = new Date(date);
 
-    // if (isBefore(dateFormatted, Date.now())) {
-    //   throw new AppError('cannot create a task with a past date');
-    // }
+    if (isBefore(dateFormatted, Date.now())) {
+      throw new AppError('cannot create a task with a past date');
+    }
 
     const createTask = await this.taskRepositories.create({
       name,
@@ -54,6 +57,9 @@ class CreateTaskService {
       user_id,
       project_id,
     });
+
+    await this.cacheProvider.invalidatePrefix('project-task');
+    await this.cacheProvider.invalidatePrefix('user-tasks');
 
     return createTask;
   }

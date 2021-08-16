@@ -40,7 +40,7 @@ export function MyProjects() {
       <View style={styles.content}>
         <View>
           <View style={styles.headerContent}>
-            {task.slice(0, 1).map((item, key) => (
+            {task.map((item, key) => (
               <View key={key}>
                 <Text style={styles.projects}>{item.project.name}</Text>
                 <Text style={styles.tasks}>

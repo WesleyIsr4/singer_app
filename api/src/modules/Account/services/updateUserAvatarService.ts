@@ -1,8 +1,8 @@
 import AppError from '@shared/error/AppError';
-import IStorageProvider from 'shared/container/storageProvider/models/IStorageProvider';
+import IStorageProvider from '@shared/container/providers/storageProvider/models/IStorageProvider';
 import { inject, injectable } from 'tsyringe';
 import Account from '../infra/typeorm/entities/account';
-import IAccountRepositories from '../repositories/IAccountRepositories';
+import IAccountRepositories from '../repositories/IAccountsRepository';
 
 interface IRequest {
   user_id: string;

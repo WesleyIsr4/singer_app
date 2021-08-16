@@ -1,4 +1,4 @@
-import uploadConfig from '../../../../config/upload';
+import uploadConfig from '../../../../../config/upload';
 import path from 'path';
 import fs from 'fs';
 import IStorageProvider from '../models/IStorageProvider';

@@ -3,7 +3,7 @@ import { compare } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 import authConfig from '@config/auth';
 import Account from '../infra/typeorm/entities/account';
-import IAccountRepositories from '../repositories/IAccountRepositories';
+import IAccountRepositories from '../repositories/IAccountsRepository';
 import { sign } from 'jsonwebtoken';
 
 interface IRequest {

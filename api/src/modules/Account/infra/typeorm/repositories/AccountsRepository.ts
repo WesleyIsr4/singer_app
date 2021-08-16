@@ -1,5 +1,5 @@
 import ICreateAccountDTO from '@modules/Account/dtos/ICreateAccountDTO';
-import IAccountRepositories from '@modules/Account/repositories/IAccountRepositories';
+import IAccountRepositories from '@modules/Account/repositories/IAccountRepository';
 import { Repository, getRepository } from 'typeorm';
 import Account from '../entities/account';
 

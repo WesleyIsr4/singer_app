@@ -15,13 +15,13 @@ export function Dashboard() {
     api.get('/project').then(response => {
       setProject(response.data);
     });
-  }, []);
+  }, [task]);
 
   useEffect(() => {
     api.get('/task').then(response => {
       setTask(response.data);
     });
-  }, []);
+  }, [project]);
 
   const navigation = useNavigation();
 

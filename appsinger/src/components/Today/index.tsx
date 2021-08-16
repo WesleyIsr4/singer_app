@@ -21,7 +21,7 @@ export function Today() {
     api.get('/task').then(response => {
       setTask(response.data);
     });
-  }, [task]);
+  }, []);
 
   useEffect(() => {
     let date = new Date(selectedYear, selectedMonth, selectedDay);
@@ -59,15 +59,25 @@ export function Today() {
         >
           <Image source={Calendar} style={styles.icon} />
         </TouchableOpacity>
-        <View style={styles.TextWrapper}>
-          <View style={styles.user}>
-            <Text style={styles.greeting}>Você tem</Text>
-            <Text style={styles.username}>
-              {taskLenght.length.toString().padStart(2, '0')} tarefas
-            </Text>
+        {taskLenght.length > 0 ? (
+          <View style={styles.TextWrapper}>
+            <View style={styles.user}>
+              <Text style={styles.greeting}>Você tem</Text>
+              <Text style={styles.username}>
+                {taskLenght.length.toString().padStart(2, '0')} tarefas
+              </Text>
+            </View>
+            <Text style={styles.message}>para finalizar hoje</Text>
           </View>
-          <Text style={styles.message}>para finalizar hoje</Text>
-        </View>
+        ) : (
+          <View style={styles.TextWrapper}>
+            <View style={styles.user}>
+              <Text style={styles.username}>
+                Você não tem tarefas para hoje!
+              </Text>
+            </View>
+          </View>
+        )}
       </View>
     </View>
   );

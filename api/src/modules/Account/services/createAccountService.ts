@@ -3,7 +3,7 @@ import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 import ICreateAccountDTO from '../dtos/ICreateAccountDTO';
 import Account from '../infra/typeorm/entities/account';
-import IAccountRepositories from '../repositories/IAccountRepositories';
+import IAccountRepositories from '../repositories/IAccountsRepository';
 
 @injectable()
 class CreateAccountService {

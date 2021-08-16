@@ -1,6 +1,6 @@
 import AppError from '@shared/error/AppError';
 import { inject, injectable } from 'tsyringe';
-import ITaskRepository from '../repositories/ITaskRepositories';
+import ITaskRepository from '../repositories/ITasksRepository';
 
 @injectable()
 class DeleteTaskService {

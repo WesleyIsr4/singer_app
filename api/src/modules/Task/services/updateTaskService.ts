@@ -2,12 +2,12 @@ import AppError from '@shared/error/AppError';
 import { isBefore } from 'date-fns';
 import { inject, injectable } from 'tsyringe';
 import Task from '../infra/typeorm/entities/task';
-import ITaskRepository from '../repositories/ITaskRepositories';
+import ITaskRepository from '../repositories/ITasksRepository';
 
 interface IRequest {
   id: string;
   name: string;
-  date: Date;
+  date: string;
 }
 
 @injectable()

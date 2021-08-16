@@ -1,15 +1,18 @@
 import { container } from 'tsyringe';
 
-import AccountRepositories from '@modules/Account/infra/typeorm/repositories/accountRepositories';
-import IAccountRepositories from '@modules/Account/repositories/IAccountRepositories';
+import './providers/index';
 
-import DiskStorageProvider from './storageProvider/implementations/diskStorageProvider';
-import IStorageProvider from './storageProvider/models/IStorageProvider';
+import AccountRepositories from '@modules/Account/infra/typeorm/repositories/AccountsRepository';
+import IAccountRepositories from '@modules/Account/repositories/IAccountsRepository';
+
+import DiskStorageProvider from './providers/storageProvider/implementations/diskStorageProvider';
+import IStorageProvider from './providers/storageProvider/models/IStorageProvider';
 
 import IProjectRepository from '@modules/Project/repositories/IProjectRepository';
-import ProjectRepositories from '@modules/Project/infra/typeorm/repositories/projectRepositories';
-import ITaskRepository from '@modules/Task/repositories/ITaskRepositories';
-import TaskRepositories from '@modules/Task/infra/typeorm/repositories/taskRepositories';
+import ProjectRepositories from '@modules/Project/infra/typeorm/repositories/ProjectsRepository';
+
+import ITaskRepository from '@modules/Task/repositories/ITasksRepository';
+import TaskRepositories from '@modules/Task/infra/typeorm/repositories/TasksRepository';
 
 container.registerSingleton<IAccountRepositories>(
   'AccountRepositories',

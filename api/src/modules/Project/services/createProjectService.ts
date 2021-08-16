@@ -1,3 +1,4 @@
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import AppError from '@shared/error/AppError';
 import { inject, injectable } from 'tsyringe';
 import ICreateProjectDTO from '../dtos/ICreateProjectDTO';
@@ -9,6 +10,10 @@ class CreateProjectService {
   constructor(
     @inject('ProjectRepositories')
     private projectRepositories: IProjectRepository,
+
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider
   ) {}
 
   async execute({ name, type, user_id }: ICreateProjectDTO): Promise<Project> {
@@ -31,6 +36,9 @@ class CreateProjectService {
       type,
       user_id,
     });
+
+    await this.cacheProvider.invalidatePrefix('user-project')
+
 
     return createProject;
   }
